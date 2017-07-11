@@ -1,0 +1,30 @@
+\subsection{Objetivos}
+El objetivo principal del presente trabajo es la estimaci\'on de las temperaturas internas a la pared de un alto horno (horno de fundición de metales), para poder así determinar la posición aproximada de la isoterma de temperatura 'iso', y poder estudiar el estado y fiabilidad del horno. 
+Se busca adem\'as comparar la eficiencia de distintos m\'etodos computacionales para la obtención de dicha isoterma, para el caso en que hay que realizar una medición \'unica de la temperatura del horno, o varias.
+
+\subsection{Introducción}
+El fen\'omeno físico de transmisión del calor es descripto detalladamente en la conocida ecuación del calor, para el caso en el que solo se desea conocer el equilibrio final de temperaturas de un sistema, se puede disponer de ecuaciones mas sencillas, estas ecuaciones de estado dependen de las caracter\'isticas del sistema, y del tipo de coordenadas usadas. Nuestro caso consiste de un sistema físico en forma de 'disco', medido en coordenadas polares, esto es, con las variables r y $\theta$. La ecuación que describe la temperatura para cada par $(r, \theta)$ en este sistema es una ecuación de segundo orden, en derivadas parciales:
+
+$$\frac{\delta ^{2} T(r, \theta)}{\delta r^{2}} + \frac{1}{r} \frac{\delta T (r,\theta)}{\delta r} + \frac{1}{r^{2}} \frac{\delta^{2} T(r,\theta)}{\delta \theta ^{2}} = 0$$
+
+~
+
+~
+
+Como los fen\'omenos y modelos físicos tienen una naturaleza continua mientras que los modelos computacionales tienen una naturaleza discreta, los mismos crean la necesidad de realizar un proceso de discretizaci\'on sobre el modelo físico inicial y una interpolación para refinar la solución encontrada.
+\\
+Para la discretización de la ecuación se utilizan formulas de diferencias finitas, que son versiones discretas de la definición continua de derivada. Se hacen aproximaciones discretas a la variable radio. Así se puede transformar una ecuación diferencial de estas caracter\'isticas en un sistema de ecuaciones lineales.
+\\
+Como m\'etodo de interpolación, se puede utilizar una función lineal que una los puntos $(r_{i}, t_{i})$ y $(r_{i+1}, t_{i+1})$ del dominio. A esta función luego se le calcula la inversa, con lo cual para cada temperatura (fijado el \'angulo), devuelve un valor que representa al radio (entre $r_{i}$ y $r_{i+1}$)  correspondido con esa temperatura.
+
+~
+
+Luego usaremos la discretizaci\'on antes descripta para obtener un sistema de ecuaciones lineales que resolveremos mediante eliminaci\'on Gaussiana y factorizaci\'on LU. La eliminación Gaussiana es un algoritmo para la resolución de sistemas de ecuaciones lineales de la forma $Ax=b$, donde A es una matriz que representa los coeficientes de las variables del sistema, x es el vector inc\'ognita, y b el vector termino independiente. El m\'etodo consiste en la obtenci\'on de una matriz triangular mediante la realización de operaciones elementales en una matriz que representa el sistema de ecuaciones. Una vez triangulada la matriz se procede a hacer la substitución hacia atr\'as (backward substitution).
+La complejidad del algoritmo es de $\mathcal{O}(n^{3})$ sobre el tamaño de la matriz, si bien las operaciones de la substitución pueden realizarse solo en $\mathcal{O}(n^{2})$.
+\\
+\\
+Un m\'etodo para optimizar el procedimiento cuando tenemos varias instancias (distintas mediciónes y por lo tanto distinto vector termino independiente) a resolver relacionadas por el mismo modelo físico (sin alterar la matriz caracter\'istica) es la factorización LU (Lower, Upper) de la matriz. La misma consiste en escribir a la matriz inicial como el producto de una matriz triangular inferior y otra triangular superior, llamadas L y U respectivamente. 
+\\
+Con esto la ecuación vectorial del sistema inicial es equivalente a $LUx=b$, pudiendo escribirse como dos ecuaciónes distintas, llamando '$y$' a '$Ux$', como $Ly=b$ y $Ux = b$. Al ser las matrices de estas ecuaciónes, triangulares no hace falta la utilización de la eliminación Gaussiana, solamente la substitución hacia atr\'as. Con este m\'etodo se espera conseguir una complejidad de $\mathcal{O}(n^{2})$ una vez realizada la factorización, lo que podría mejorar el rendimiento, a la hora de realizar varias mediciones con un mismo modelo físico.
+
+

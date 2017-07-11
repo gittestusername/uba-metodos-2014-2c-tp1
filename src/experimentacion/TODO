@@ -1,0 +1,13 @@
+Cosas pendientes:
+----------------
+
+- Generar graficos significativos de las instancias de test creadas por el generador.
+  Dichos graficos se deben crear desde matlab ya que con octave no es posible hacer que se superpongan los plots (isoterma + output)
+
+- Medir ciclos de clock para cada una de las siguientes instancias: [frio, calor, friocalor] con cada uno de los siguientes modificadores: [m, n, mn], donde m es variando la cantidad de radios, n la cantidad de thetas y mn aumenta ambos linealmente. 
+
+- Hacer experimentos para la segunda parte: Generar dos instancias, una totalmente caliente (1500) y otra totalmente fria (0) en los extremos. La idea es ir enfriando y calentandolas linealmente,generar 100 instancias de cada una (en un archivo), y hacer un grafico en funcion del tiempo de gauss vs LU.
+
+- Graficar esos dos hornos y sus variaciones.. ¿Como?
+
+- Escribir un informe con todo eso. 

@@ -1,0 +1,48 @@
+\subsection{Implementación en C++}
+
+Proveemos un programa de computadora para resolver instancias de este problema, mediante distintos métodos, a saber, Eliminación gaussiana y Factorización LU. El código fuente del programa se encuentra adjunto a este documento.
+
+El código está en lenguaje C++11 con una extensión en Assembler de la arquitectura Intel x86-64 para contar los ciclos de procesador insumidos, esto fue utilizado en la sección Experimentación y allí se encuentra una explicación.
+
+Para generar el binario se necesita:
+
+\begin{itemize}
+    \item GNU Make para compilar y generar el binario
+    \item El compilador g++ de GNU, versión 4.6.3 (Se puede utilizar otro compilador, pero este debe soportar el estándar de C++11 y soporte inline-assembly con sintaxis Intel.
+\end{itemize}
+
+Utilizando GNU Make se puede generar un binario compatible con arquitecturas Intel x86-64. Para ello, hay que ejecutar:
+
+\begin{verbatim}
+    make main
+\end{verbatim}
+
+Esto generará un archivo ejecutable llamado \textbf{tp}, para ejecutarlo, se deben brindar los siguientes parámetros:
+
+\begin{itemize}
+    \item \textbf{archivo\_in} el nombre de un archivo que describa un sistema con un formato parseable, el mismo será descripto más adelante (formato entrada).
+    \item \textbf{archivo\_out} nombre del archivo donde se desee guardar el sistema resuelto, con un formato que también será descripto más adelante (formato salida)
+    \item \textbf{modo} Modo de resolución 0 para Gauss, 1 para LU
+    \item \textbf{archivo\_iso} (opcional) nombre del archivo en donde se desee guardar la información de la isoterma, con un formato que será descripto más adelante (formato isoterma)
+\end{itemize}
+
+Por ejemplo, se puede ejecutar el binario como:
+
+\begin{verbatim}
+    ./tp archivo.in archivo.out 1 archivo.isoterma
+\end{verbatim}
+
+Donde archivo.in es un archivo existente y archivo.out y archivo.isoterma pueden no existir y serán sobreescritos.
+
+\subsubsection{Formatos de Archivos}
+
+La especificación del formato de entrada y formato salida se encuentra en el Apéndice B - Enunciado.
+La especificación del formato de la isoterma es: para un horno de n sensores y k instancias, un archivo con $k * n$ líneas, con un número real en cada línea, donde las línea $i$ contiene el radio de la isoterma para la instancia $[\frac{i}{n}]$ del sensor $i \% n$ (que representa 'el resto de dividir a $i$ por $n$).
+
+\subsubsection{Scripts para MATLAB y Python}
+
+También proveemos scripts para resolver el sistema en MATLAB y Python. Estos scripts fueron utilizados para prototipar el programa en C++ y encotrar errores en las operaciones. Los mismos se encuentran dentro de la carpeta 'exp' del directorio de archivos provisto. Para ejecutar estos archivos es necesario poseer los programas MATLAB y Python 2.7 (también la librería scipy). 
+
+\subsubsection{Generación de Experimentos}
+
+Proveemos también los scripts utilizados para generar  y correr los experimentos. Estos se encuentran dentro de la carpeta 'experimentacion'. Se necesita poseer bash alguna shell compatible y el programa Go, compilador oficial del lenguaje de programación Go (algunos de los programas fueron hechos en este lenguaje). Es necesario compilar el tp y los programas y ponerlos en las carpetas donde están los scripts.

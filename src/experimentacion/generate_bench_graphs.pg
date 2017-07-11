@@ -1,0 +1,180 @@
+#!/usr/bin/gnuplot
+##########################################
+##				RADIOS					##
+##########################################
+reset
+set terminal pdf
+set output 'PDFs/radios.pdf'
+
+set encoding iso_8859_1
+
+# Escala logarítmica:
+# set logscale x
+# set logscale y
+# set logscale xy
+# 
+# set nologscale x
+# set nologscale y
+# set nologscale xy 
+
+set xlabel "Cantidad de radios (m)"
+set ylabel "Ciclos de clock insumidos (1x10^7)"
+set autoscale
+#set yrange [0:31]
+
+set title "Ciclos de clock insumidos al variar m."
+set key reverse left top inside
+set grid
+
+set style data linespoints
+
+
+#plot [raw_data] using [x value's column in data file]:[y value's column in data files] title [item's name], ...
+plot "frio/m/metric" using ($1):($4/10000000) title "Horno Frio" linecolor rgb "blue" linetype 102 pointtype 52 pointsize 0.2, \
+"calor/m/metric" using ($1):($4/10000000) title "Horno Caliente" linecolor rgb "red" linetype 102 pointtype 52 pointsize 0.2, \
+"friocalor/m/metric" using ($1):($4/10000000) title "Horno Mitad Mitad" linecolor rgb "yellow" linetype 102 pointtype 52 pointsize 0.2, \
+"" using ($1):(17000*$1*$1*$1/10000000) title "f(m) = m³" linecolor rgb "green" linetype 102 pointtype 52 pointsize 0.1
+
+
+##########################################
+##				SENSORES				##
+##########################################
+reset
+set terminal pdf
+set output 'PDFs/sensores.pdf'
+
+set encoding iso_8859_1
+
+# Escala logarítmica:
+# set logscale x
+# set logscale y
+# set logscale xy
+# 
+# set nologscale x
+# set nologscale y
+# set nologscale xy 
+
+set xlabel "Cantidad de angulos (n)"
+set ylabel "Ciclos de clock insumidos (1x10^7)"
+set autoscale
+#set yrange [0:31]
+
+set title "Ciclos de clock insumidos al variar n."
+set key reverse left top inside
+set grid
+
+set style data linespoints
+
+
+#plot [raw_data] using [x value's column in data file]:[y value's column in data files] title [item's name], ...
+plot "frio/n/metric" using ($2):($4/10000000) title "Horno Frio" linecolor rgb "blue" linetype 102 pointtype 52 pointsize 0.2, \
+"calor/n/metric" using ($2):($4/10000000) title "Horno Caliente" linecolor rgb "red" linetype 102 pointtype 52 pointsize 0.2, \
+"friocalor/n/metric" using ($2):($4/10000000) title "Horno Mitad Mitad" linecolor rgb "yellow" linetype 102 pointtype 52 pointsize 0.2, \
+"" using ($2):(17000*$2*$2*$2/10000000) title "f(n) = n³" linecolor rgb "green" linetype 102 pointtype 52 pointsize 0.1
+##########################################
+##				AMBOS					##
+##########################################
+reset
+set terminal pdf
+set output 'PDFs/ambos.pdf'
+
+set encoding iso_8859_1
+
+# Escala logarítmica:
+# set logscale x
+# set logscale y
+# set logscale xy
+# 
+# set nologscale x
+# set nologscale y
+# set nologscale xy 
+
+set xlabel "Suma de radios y sensores (m+n)"
+set ylabel "Ciclos de clock insumidos (1x10^7)"
+set autoscale
+#set yrange [0:31]
+
+set title "Ciclos de clock insumidos al variar m y n."
+set key reverse left top inside
+set grid
+
+set style data linespoints
+
+
+#plot [raw_data] using [x value's column in data file]:[y value's column in data files] title [item's name], ...
+plot "frio/mn/metric" using ($3):($4/10000000) title "Horno Frio" linecolor rgb "blue" linetype 102 pointtype 52 pointsize 0.2, \
+"calor/mn/metric" using ($3):($4/10000000) title "Horno Caliente" linecolor rgb "red" linetype 102 pointtype 52 pointsize 0.2, \
+"friocalor/mn/metric" using ($3):($4/10000000) title "Horno Mitad Mitad" linecolor rgb "yellow" linetype 102 pointtype 52 pointsize 0.2, \
+"" using ($3):(25*($1*$2)*($1*$2)*($1*$2)/100000000) title "f(m, n) = (mn)³" linecolor rgb "green" linetype 102 pointtype 52 pointsize 0.1
+##########################################
+##				COMPBENCH				##
+##########################################
+reset
+set terminal pdf
+set output 'PDFs/compbench.pdf'
+
+set encoding iso_8859_1
+
+# Escala logarítmica:
+# set logscale x
+# set logscale y
+# set logscale xy
+# 
+# set nologscale x
+# set nologscale y
+# set nologscale xy 
+
+set xlabel "Instancias consecutivas resueltas"
+set ylabel "Ciclos de clock insumidos (1x10^4)"
+set autoscale
+#set yrange [0:31]
+
+set title "Comparacion de performance entre GE y LU."
+set key reverse left top inside
+set grid
+
+set style data linespoints
+
+
+#plot [raw_data] using [x value's column in data file]:[y value's column in data files] title [item's name], ...
+plot "exp2/metricG.data" using ($1):($4/10000) title "GE" linecolor rgb "blue" linetype 102 pointtype 52 pointsize 0.2, \
+"exp2/metricLU.data" using ($1):($4/10000) title "LU" linecolor rgb "red" linetype 102 pointtype 52 pointsize 0.2#, \
+#"" using ($3):(25*($1*$2)*($1*$2)*($1*$2)/100000000) title "f(m, n) = (mn)³" linecolor rgb "green" linetype 102 pointtype 52 pointsize 0.1
+
+
+##########################################
+##				COMPBENCH - extra		##
+##########################################
+reset
+set terminal pdf
+set output 'PDFs/compbench-extra.pdf'
+
+set encoding iso_8859_1
+
+# Escala logarítmica:
+# set logscale x
+ set logscale y
+# set logscale xy
+# 
+# set nologscale x
+# set nologscale y
+# set nologscale xy 
+
+set xlabel "Variacion de radios utilizados (m)"
+set ylabel "Ciclos de clock insumidos (1x10^6)"
+set autoscale
+#set yrange [0:31]
+
+set title "Comparacion de performance entre GE y LU."
+set key reverse left top inside
+set grid
+
+set style data linespoints
+
+
+#plot [raw_data] using [x value's column in data file]:[y value's column in data files] title [item's name], ...
+plot "final/metricGfinal" using ($1):($3/1000000) title "GE" linecolor rgb "blue" linetype 102 pointtype 52 pointsize 0.2, \
+"final/metricLUfinal" using ($1):($3/1000000) title "LU" linecolor rgb "red" linetype 102 pointtype 52 pointsize 0.2, \
+"" using ($1):(3*($1*$1*$1)/10) title "m³" linecolor rgb "black" linetype 102 pointtype 52 pointsize 0.1, \
+"" using ($1):(2*($1*$1)/10) title "m²" linecolor rgb "green" linetype 102 pointtype 52 pointsize 0.1
+#

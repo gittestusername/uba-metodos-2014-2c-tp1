@@ -1,0 +1,9 @@
+Mediante los resultados obtenidos por la experimentaci\'on, pudimos concluir que la factorizaci\'on LU es igual (para los casos de una instancia) o m\'as performante (para los casos de mas de una instancia) que la eliminaci\'on Gausseana. 
+
+~
+
+El an\'alisis de performance deja en evidencia que efectivamente la eliminaci\'on Gausseana tiene una complejidad de $\mathcal{O}((nm)^3)$ para toda iteraci\'on mientras que la factorizaci\'on LU tiene una complejidad de $\mathcal{O}((nm)^3)$ para la primera resoluci\'on mientras que para sucesivas resoluciones tiene una complejidad de $\mathcal{O}((nm)^2)$.
+
+~
+
+En un sistema de control de temperaturas real, en donde tendr\'iamos que dar una estimaci\'on a cada instante de la temperatura del horno y del calculo de la isoterma para poder prevenir accidentes, la factorizaci\'on LU supone una mejor manera de hacerlo. ya que como el sistema no cambiara la cantidad de sensores (ya que son piezas de hardware y demandar\'ia una reinstalaci\'on de los mismos) tampoco lo har\'a la matriz asociada al sistema. Es por ello que hasta podr\'iamos hacer el calculo de la matriz de antemano, de alguna forma hardcodearlo para que todo funcione aun mas r\'apido y luego resolver el sistema y dar las estimaciones cuando los datos de los sensores lleguen.

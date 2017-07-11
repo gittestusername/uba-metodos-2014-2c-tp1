@@ -1,0 +1,77 @@
+\documentclass[10pt, a4paper]{article}
+\usepackage[paper=a4paper, left=1.5cm, right=1.5cm, bottom=1.5cm, top=3.5cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{indentfirst}
+\usepackage{fancyhdr}
+\usepackage{latexsym}
+\usepackage{lastpage}
+\usepackage{calc}
+\usepackage{caratula}
+\usepackage{fancyhdr}
+\usepackage[pdftex]{graphicx}
+\usepackage{color}
+\usepackage{dsfont}
+\usepackage{xspace}
+\usepackage{xargs}
+\usepackage{listings} 	
+\usepackage{algpseudocode}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{caption}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage{sidecap}
+\usepackage{textcomp}
+\usepackage{wrapfig}
+\usepackage{blkarray}
+\def\Big#1{\makebox(0,0){\huge#1}}
+
+\titulo{Trabajo Práctico 1: CQTDAH}
+\fecha{10 / 4 / 2014}
+\materia{Métodos Numéricos}
+\grupo{Grupo: Nombre Pendiente}
+\integrante{Rama, Roberto}{490/11}{bertoski@gmail.com}
+\integrante{Vanotti, Marco}{229/10}{mvanotti@dc.uba.ar}
+\integrante{Ventura, Alejandro}{249/11}{vn2.amv@gmail.com}
+
+\def\contentsname{Índice}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\pagestyle{fancy}
+\lhead{Rama, Vanotti, Ventura}
+\rhead{Métodos Numéricos - TP1}
+
+\clearpage
+\section{Introducción}
+  \input{introduccion.tex}
+
+\clearpage
+\section{Desarrollo}
+  \input{desarrollo.tex}
+
+\clearpage
+\section{Experimentación}
+  \input{experimentacion.tex}
+
+\clearpage
+\section{Demostración}
+  \input{demostracion.tex}
+
+\section{Conclusiones}
+  \input{conclusiones.tex}
+ 
+
+\clearpage
+\section{Apéndice A: Implementación}
+    \input{apendice-a.tex}
+\clearpage
+\section{Bibliografía}
+    \input{bibliografia.tex}
+\end{document}

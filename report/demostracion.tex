@@ -1,0 +1,115 @@
+\textbf{Proposición: } Sea $A \in \mathbb{R}^{nxn}$ la matriz obtenida para el sistema definido por $(6) - (9)$. Es posible aplicar eliminación Gaussiana sin pivoteo.
+
+\subsection{Aclaraciones}
+
+En las siguientes demostraciones, se usará la notación $A^{(k)}$ para referirse a la matriz resultante de aplicar k pasos de eliminación gaussiana en A, para algún $k \in \mathbb{N}$
+
+\subsection{Demostración de la propiedad}
+\textbf{Lema 0:} Sea $A \in \mathbb{R}^{nxn}$ una matriz cuyas filas son \textit{linealmente independientes} (LI), no existe una columna de A con elementos todos nulos.
+
+\textbf{Lema 1:} Sea $A \in \mathbb{R}^{nxn}$ una matriz cuyas filas son LI, vale que  $\forall i, j \in [1, n], i \neq j$ la matriz resultante de restar un múltiplo cualquiera de la fila i a la fila j tambien es LI.
+
+
+
+\textbf{Lema 2:} Sea $A \in \mathbb{R}^{nxn}$ una matriz DDNE cuyas filas son LI, se puede hacer un paso de eliminación Gaussiana sin pivote.
+
+
+
+\textbf{Lema 3:} Sea $A \in \mathbb{R}^{nxn}$ una matriz DDNE cuyas filas son LI, la submatriz resultante de aplicar un paso de la eliminación Gaussiana es DDNE.
+\\
+
+\textbf{Demostración:} Sea $A$ una matriz definida por $(6) - (9)$. Vale que $A$ es una matriz cuadrada que es \textit{diagonal dominante no estricta} (DDNE) cuyas filas son LI. 
+
+Luego, por el \textbf{Lema 0}, \textbf{Lema 1} y el \textbf{Lema 2} puedo aplicar un paso de la eliminación gaussiana conservando la independencia lineal. 
+Por el \textbf{Lema 3} vale que la matriz resultante sigue siendo DDNE y LI, cumpliendo de nuevo las hipótesis originales. Aplicando este paso $n$ veces, se obtiene la matriz $A^{(n)}$ sin pivotear. $\blacksquare$
+
+
+\subsubsection{Demostración del Lema 0}
+Sea $A \in  \mathbb{R}^nxn$ una matriz cuyas filas son linealmente independientes.
+
+Asumamos que A tiene una columna de elementos todos nulos. Entonces, $A^{t}$ tiene una fila de elementos todos nulos.
+
+Por lo tanto $det( A^{t}) = 0$ [Hefferon-1]$\Rightarrow det(A) = 0$ [Jeronimo-1]$\Rightarrow$ Las filas de A son linealmente dependientes[Jeronimo-2]. 
+
+El absurdo provino de suponer que la matriz A, teniendo filas linealmente independientes, puede tener una columna de elementos todos nulos.
+\subsubsection{Demostración del Lema 1}
+Sea $A \in \mathbb{R}^{nxn}$. Que sus filas sean LI implica que:
+\begin{equation} 
+\lambda_{1} f_{1} + ... + \lambda_{n}f_{n}  = 0 \Leftrightarrow \lambda_{p} = 0,  \forall p \in [1..n]
+\end{equation} 
+\\
+Supongamos ahora que realizo la operación de restarle a la fila j-ésima de A, un m\'ultiplo de la fila i-ésima de A. Una combinación lineal de las filas de la matriz resultante, llam\'emosla A', podr\'ia escribirse en función de las filas originales como:
+\\
+\begin{equation} 
+\lambda_{1} f_{1} + ... + \lambda_{i} f_{i} + ... + \lambda_{j} f_{j} - k  \lambda_{i} f_{i} + ... + \lambda_{n}f_{n}  =
+\end{equation} 
+\\
+\begin{equation} 
+\lambda_{1} f_{1} + ... + ( \lambda_{i} - k) f_{i} + ... + \lambda_{j} f_{j} + ... + \lambda_{n}f_{n}  =
+\end{equation} 
+\\
+Si ahora tomamos $ \lambda'_{i} = \lambda_{i} - k $ como coeficiente, podemos obtener la siguiente expresi\'on, que es equivalente a la que obtuvimos originalmente de los vectores de A. 
+
+\begin{equation} 
+\lambda_{1} f_{1} + ... +  \lambda_{i}' f_{i} + ... + \lambda_{n}f_{n} =  \Leftrightarrow \lambda' = 0 \wedge  \lambda_{i} = 0 \forall \lambda \in [1 .. n]
+\end{equation} 
+
+Con lo cual si las filas de A son linealmente independientes,  las de A' tambi\'en lo son.
+\subsubsection{Demostración del Lema 2}
+Si $A$ es DDNE, entonces $\forall i, j \in [1, n], |a_{jj}| \geq|a_{ij}|$.
+
+Como la matriz tiene filas LI y es cuadrada, por \textbf{Lema 0}, no existe una columna de elementos todos nulos. 
+
+Luego, $\forall j \in [1, n] \exists i_0 \in [1, n] / |a_{i_0 j}| > 0$, finalmente, como es DDNE $\forall i \in [1, n], |a_{ii}| \geq |a_{i_0 j}| > 0$. 
+
+Esto significa que los elementos de la diagonal son no nulos, y, por lo tanto, se puede realizar un paso de la eliminación Gaussiana sin necesidad de pivotear.
+
+\subsubsection{Demostración del Lema 3}
+Quiero ver que al hacer eliminación Gaussiana, la submatriz resultante no pierde su propiedad de DDNE. Dada una matriz  $A^{(0)} \in \mathbb{R}^{nxn}$ y que se realizó un paso de la factorización de Gauss, siendo la matriz resultante nombrada $A^{(1)}$. En tal caso, un elemento de $A^{1}$ se escribe:
+\\
+\begin{equation*}
+\centerline{$|a^{(1)}_{ij}| = |a^{(0)}_{ij} - \frac{a^{(0)}_{i1}}{a^{(0)}_{11}}  a^{(0)}_{1j}|$}
+\end{equation*}
+Y la propiedad que queremos probar se escribe:
+\\
+\begin{equation*} 
+\sum_{i=2, i \neq j}^{n}  |a^{(1)}_{ij}| \leq |a^{(1)}_{jj}| 
+\end{equation*}
+De ahora en mas se evitara usar los supraindices por cuestiones de simplicidad. Reemplazando (10) en (11) vale que
+\begin{equation*} 
+\sum_{i=2, i \neq j}^{n}  |a_{ij} - \frac{a_{i1}}{a_{11}}  a_{1j}|  \leq
+\end{equation*}
+\begin{equation*} 
+\sum_{i=2, i \neq j}^{n}  |a_{ij}| + \sum_{i=2, i \neq j}^{n}  |\frac{a_{i1}}{a_{11}}  a_{1j}|  =
+\end{equation*}
+\begin{equation*} 
+-|a_{1j}| + \sum_{i=1, i \neq j}^{n}  |a_{ij}| + \sum_{i=2, i \neq j}^{n}  |\frac{a_{i1}}{a_{11}}  a_{1j}|
+\end{equation*}
+Pero como $A^{(0)}$ es DDNE
+\begin{equation*} 
+\sum_{i=1, i \neq j}^{n}  |a_{ij}|  \leq |a_{jj}| \Rightarrow (18) \leq  -|a_{1j}| + |a_{jj}| + \sum_{i=2, i \neq j}^{n} | \frac{a_{i1}}{a_{11}} a_{1j}| = 
+\end{equation*}
+\begin{equation*} 
+|-a_{1j}| + |a_{jj}| + | \frac{a_{1i}}{a_{11}}| \sum_{i=2, i \neq j}^{n}  |a_{i1}|
+\end{equation*} 
+
+\newpage
+
+Otra vez, usando que $A^{(0)}$ es DDNE
+\begin{equation*} 
+\sum_{i=2}^{n}  |a_{i1}|  \leq |a_{11}| \Rightarrow
+\end{equation*}
+\begin{equation*} 
+\sum_{i=2, i \neq j}^{n}  |a_{i1}| +|a_{j1}| \leq |a_{11}|
+\end{equation*}
+\begin{equation*} 
+\sum_{i=2, i \neq j}^{n}  |a_{i1}|  \leq |a_{11}| - |a_{j1}|
+\end{equation*}
+
+Esto implica que
+\begin{equation*} 
+(20) \leq - |a_{ij}| + |a_{jj}|  + |\frac{a_{1j}}{a_{11}}|(|a_{11}| - |a_{j1}|)
+\end{equation*}
+\begin{equation*} 
+= |a_{jj}| - | \frac{a_{1j}}{a_{11}}| |a_{j1}| \leq |a_{jj} - \frac{a_{1j}}{a{11}} a_{j1}| = |a_{jj}^{(1)}|
+\end{equation*}

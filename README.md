@@ -1,1 +1,2 @@
 # numerical-methods
+This repository contains our solution to an assignment from a numerical methods course. The objective was to solve the stationary heat equation for a disc shaped oven, and the calculate the isotherm.
